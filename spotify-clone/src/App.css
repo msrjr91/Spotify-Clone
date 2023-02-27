@@ -11,29 +11,29 @@
   width: 100%;
   margin: 0 auto;
   display: flex;
-  background-color: rgb(1, 27, 14)
+  background-color: rgb(1, 12, 7)
 }
 
 .nav-container {
   display: inline-block;  
   flex-direction: column;
-  max-width: 10%;
+  max-width: 12%;
   /* float: left;
   position: fixed; */
   height: 100vh;
   padding-left: 10px;
-  background-color: rgb(22, 23, 23);
+  background-color: rgb(0, 0, 0);
 
 }
 
 .logo{
-  max-width: 90%;
+  max-width: 65%;
   margin-top: 30px; 
   margin-bottom: 20px;
 }
 
 .nav-items {
-  font-size: 1.2vw;
+  font-size: 0.8vw;
   margin-left: 10px;
 }
 
@@ -55,7 +55,7 @@
 
 .display-container {
   display: inline-block;
-  max-width: 90%;
+  max-width: 88%;
   overflow: auto;
   max-height: 100vh;
   padding: 20px;
@@ -73,7 +73,41 @@ main {
   width: 100%;
   padding: 10spx;
   max-height: 15vh;
-  background-color: rgb(41, 47, 44);
+  background-color: rgb(14, 14, 14);
   align-items: center;
   text-align: center;
 }
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.search-bar {
+  position: absolute;
+}
+
+input {
+  width: 200%;
+  padding: 10px;
+  margin:4px;
+  box-sizing: border-box;
+  padding-left:60px;
+  border-radius: 24px;
+  color: black;
+ }
+
+ .search-bar i {
+  position:absolute;
+  left:0;
+  top:5px;
+  padding:10px 10px;
+  color:#010101;
+ }
+
+ .search-results {
+  position: relative;
+  top: 60px;
+  left: 20px;
+ }

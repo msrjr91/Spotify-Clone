@@ -34,7 +34,7 @@ export default function Nav() {
       <div className="display-container">
         <main>
           {
-            selection === "Home"? <Home/> : selection === "Search"? <Search/> : null
+            selection === "Home"? <Home/> : selection === "Search"? <Search/> : selection === undefined ? <Home/> : null
           }
         </main>
       </div>

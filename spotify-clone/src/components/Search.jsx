@@ -1,4 +1,3 @@
-import  { Container, Form } from 'react-bootstrap' 
 import { useState, useEffect } from 'react'
 import { useContext } from 'react'
 import { DataContext } from '../DataContext'
@@ -15,10 +14,16 @@ export default function Search(){
   const [search, setSearch] = useState('')
   console.log("successfully read token:" + accessToken)
 
+  useEffect(() => {
+
+  })
+
+
   return(
     <div className="search-container">
       <div className="search-bar">
         <input type="text" placeholder="What do you want to listen to?" onChange={e => setSearch(e.target.value)} value={search}/>
+        <i className="fa fa-search fa-lg fa-fw" aria-hidden="true"></i>
       </div>
       <div className="search-results">Songs</div>
     </div>

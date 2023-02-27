@@ -51,7 +51,7 @@ function App() {
   return (
     <DataContext.Provider value={{accessToken}}>
       <div className="App">
-        <Nav> 
+        <Nav>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
