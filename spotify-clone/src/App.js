@@ -1,9 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import { DataContext } from './DataContext'
 import { Buffer } from 'buffer';
-import Dashboard from './components/Dashboard';
+import Nav from './components/Nav';
+import Home from './components/Home';
+import Search from './components/Search';
+import { DataContext } from "./DataContext"
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
@@ -33,10 +36,6 @@ function App() {
     }
   }
 
-  // useEffect(() => {
-  //   getToken()
-  // },[])
-
   useEffect(()=>{
     async function checkToken() {
       if (accessToken === "") {
@@ -50,9 +49,16 @@ function App() {
   },[accessToken])
 
   return (
-    <div className="App">
-      <Dashboard />
-    </div>
+    <DataContext.Provider value={{accessToken}}>
+      <div className="App">
+        <Nav> 
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+        </Routes>
+        </Nav> 
+      </div>
+    </DataContext.Provider>
   );
 }
 

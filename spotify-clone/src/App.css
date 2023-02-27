@@ -1,3 +1,79 @@
-.App {
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  /* background-color: #000000; */
+  color: white;
+  font-family: sans-serif;
+}
+.container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  background-color: rgb(1, 27, 14)
+}
+
+.nav-container {
+  display: inline-block;  
+  flex-direction: column;
+  max-width: 10%;
+  /* float: left;
+  position: fixed; */
+  height: 100vh;
+  padding-left: 10px;
+  background-color: rgb(22, 23, 23);
+
+}
+
+.logo{
+  max-width: 90%;
+  margin-top: 30px; 
+  margin-bottom: 20px;
+}
+
+.nav-items {
+  font-size: 1.2vw;
+  margin-left: 10px;
+}
+
+.icon {
+  margin-right: 10px; 
+}
+
+.link {
+  display: flex;
+  margin-top: 25px;
+  opacity: 0.7;
+}
+
+.link:hover {
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+
+.display-container {
+  display: inline-block;
+  max-width: 90%;
+  overflow: auto;
+  max-height: 100vh;
+  padding: 20px;
+}
+
+main {
+  align-items: center;
+  width: 100%;
+
+}
+
+.player-container {
+  position: fixed;  
+  bottom: 0;
+  width: 100%;
+  padding: 10spx;
+  max-height: 15vh;
+  background-color: rgb(41, 47, 44);
+  align-items: center;
   text-align: center;
 }
