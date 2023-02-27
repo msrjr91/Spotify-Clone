@@ -1,69 +1,40 @@
+import { useState, useEffect } from 'react'
+import { useContext } from 'react'
+import { DataContext } from '../DataContext'
+import SpotifyWebApi from 'spotify-web-api-node'
+
+const spotifyApi = new SpotifyWebApi({
+  clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
+  clientSecret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET
+})
 
 
 export default function Home(){
+
+  const {accessToken} = useContext(DataContext)
+  spotifyApi.setAccessToken(accessToken)
+
+  useEffect(() => {
+    spotifyApi.getPlaylist("0JQ5DAqbMKFDXXwE9BDJAr")
+      .then(function(data) {
+    console.log('Some information about this playlist', data.body);
+  }, function(err) {
+    console.log('Something went wrong!', err);
+  });
+  },[])
+
   return(
     <section>
       <div>
-        <div><h1>This is home.</h1></div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur architecto atque obcaecati! In exercitationem sapiente ducimus magnam. Sequi voluptas mollitia ad nobis explicabo magnam quibusdam nam id, ducimus doloremque quam.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eaque cupiditate doloribus quod ratione adipisci, maiores officiis, consequuntur aliquid vel aperiam. Ut aperiam alias nam beatae magni ipsa harum eligendi?</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <h1>Jump right in</h1><br />
+        <div className="categories-container">
 
+        </div>
+        
       </div>
     </section>
   )

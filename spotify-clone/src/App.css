@@ -11,7 +11,7 @@
   width: 100%;
   margin: 0 auto;
   display: flex;
-  background-color: rgb(1, 12, 7)
+  background-color: rgb(2, 11, 7)
 }
 
 .nav-container {
@@ -33,7 +33,7 @@
 }
 
 .nav-items {
-  font-size: 0.8vw;
+  font-size: 1vw;
   margin-left: 10px;
 }
 
@@ -73,7 +73,7 @@ main {
   width: 100%;
   padding: 10spx;
   max-height: 15vh;
-  background-color: rgb(14, 14, 14);
+  background-color: rgb(9, 9, 9);
   align-items: center;
   text-align: center;
 }
@@ -89,14 +89,18 @@ main {
 }
 
 input {
-  width: 200%;
+  width: 150%;
   padding: 10px;
   margin:4px;
   box-sizing: border-box;
   padding-left:60px;
-  border-radius: 24px;
+  border-radius: 26px;
   color: black;
  }
+
+ input:focus, textarea:focus, select:focus{
+  outline: none;
+}
 
  .search-bar i {
   position:absolute;
@@ -106,8 +110,10 @@ input {
   color:#010101;
  }
 
- .search-results {
+ .search-results-container {
   position: relative;
-  top: 60px;
+  top: 80px;
   left: 20px;
  }
+
+ 
