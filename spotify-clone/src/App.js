@@ -15,6 +15,7 @@ const auth_token = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`, 'utf-8').toStrin
 function App() {
 
   const [ accessToken, setAccessToken ] = useState("")
+  const [ songQueue, setSongQueue ] = useState([])
   const qs = require('qs')
 
   const getToken = async () => {
@@ -49,7 +50,7 @@ function App() {
   },[accessToken])
 
   return (
-    <DataContext.Provider value={{accessToken}}>
+    <DataContext.Provider value={{accessToken, setAccessToken, songQueue, setSongQueue }}>
       <div className="App">
         <Nav>
         <Routes>

@@ -11,6 +11,7 @@ import Player from "./Player";
 export default function Nav() {
 
   const [ selection, setSelection] = useState()
+  
 
   return(
     <div className="container">
@@ -29,7 +30,9 @@ export default function Nav() {
               })
             }
         </div>
-
+        <div className="login">
+          <button className="login-button">Login</button>
+        </div>
       </div>
       <div className="display-container">
         <main>

@@ -8,3 +8,4 @@ This project utilizes the Spotify API to create a web-based Spotify player
 -dotenv
 -axios
 -react-router-dom
+-spotify-web-player
