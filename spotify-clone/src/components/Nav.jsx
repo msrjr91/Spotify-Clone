@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
-import { DataContext } from "../DataContext";
+import { DataContext, LoginContext } from "../DataContext";
 import { menuItems } from "./MenuItems";
 import Home from "./Home";
 import Search from "./Search";
 import Player from "./Player";
 import Library from "./Library";
+
 
 
 export default function Nav() {
@@ -32,7 +33,6 @@ export default function Nav() {
   let token = urlParams.get('access_token');
   if(token){
     setAccessToken(token)
-    // console.log("WE FOUND THE TOKEN AND SET IT TO ACCESS TOKEN!", accessToken)
   }
 
   useEffect(()=>{
@@ -68,11 +68,13 @@ export default function Nav() {
 
       </div>
       <div className="display-container">
-        <main>
-          {
-            selection === "Home" ? <Home/> : selection === "Search" ? <Search/> : selection === "Library" ? <Library /> : selection === undefined ? <Home/> : null
-          }
-        </main>
+        <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+          <main>
+            {
+              selection === "Home" ? <Home /> : selection === "Search" ? <Search/> : selection === "Library" ? <Library /> : selection === undefined ? <Home/> : null
+            }
+          </main>
+        </LoginContext.Provider>
       </div>
       <div className="player-container">
         {
