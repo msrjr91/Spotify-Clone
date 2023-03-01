@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useContext } from 'react'
 import { DataContext } from '../DataContext'
 import SpotifyWebApi from 'spotify-web-api-node'
-import axios from 'axios'
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
@@ -10,7 +9,6 @@ const spotifyApi = new SpotifyWebApi({
 })
 
 export default function Search(){
-
   
   const {accessToken} = useContext(DataContext)
   spotifyApi.setAccessToken(accessToken)
@@ -52,7 +50,8 @@ export default function Search(){
       console.error("error with query:",err)
     })
   },[search])
-  console.log("search results", searchResults)
+
+  // console.log("search results", searchResults)
   console.log("current song queue:", songQueue)
 
   const handleChange = (e) => {

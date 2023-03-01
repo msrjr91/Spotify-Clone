@@ -14,14 +14,14 @@ export default function Home(){
   const {accessToken} = useContext(DataContext)
   spotifyApi.setAccessToken(accessToken)
 
-  useEffect(() => {
-    spotifyApi.getPlaylist("0JQ5DAqbMKFDXXwE9BDJAr")
-      .then(function(data) {
-    console.log('Some information about this playlist', data.body);
-  }, function(err) {
-    console.log('Something went wrong!', err);
-  });
-  },[])
+  // useEffect(() => {
+  //   spotifyApi.getPlaylist("0JQ5DAqbMKFDXXwE9BDJAr")
+  //     .then(function(data) {
+  //   console.log('Some information about this playlist', data.body);
+  // }, function(err) {
+  //   console.log('Something went wrong!', err);
+  // });
+  // },[])
 
   return(
     <section>

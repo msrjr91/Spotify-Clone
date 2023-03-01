@@ -18,6 +18,7 @@ function App() {
   const [ songQueue, setSongQueue ] = useState([])
   const qs = require('qs')
 
+  //set initial token for search permissions only. Full permissions granted upon login.
   const getToken = async () => {
 
     try{
@@ -43,7 +44,7 @@ function App() {
         console.log("No established token...getting token.")
         getToken()
       } else {
-        console.log("Access Token is valid: ", accessToken)
+        console.log("INITIAL TOKEN: ", accessToken)
       }
     }
     checkToken()
