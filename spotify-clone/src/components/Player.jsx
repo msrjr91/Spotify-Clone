@@ -1,21 +1,39 @@
 import SpotifyPlayer from 'react-spotify-web-playback';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { DataContext } from '../DataContext';
 
 export default function Player(){
 
   const {accessToken, songQueue} = useContext(DataContext)
-  // console.log("player succsessfully read token:", accessToken)
-  console.log("INHERITED SONG QUEUE:", songQueue)
-  console.log("PLAYER FUNC INHERITED TOKEN:", accessToken)
+  // console.log("INHERITED SONG QUEUE:", songQueue)
+  // console.log("PLAYER FUNC INHERITED TOKEN:", accessToken)
 
-  return(
+  const [ play, setPlay ] = useState(false)
+
+  useEffect(() => {
+    console.log('DETECTED SONG CHANGE', songQueue)
+    nextSong = []
+    setPlay(false)
+    nextSong = songQueue
+    setPlay(true)
+  }, [songQueue])
+
+  let nextSong = songQueue
+
+  return(    
     <SpotifyPlayer
       token={accessToken}
+      autoPlay={false}
       showSaveIcon
-      uris={songQueue}
-      tyles={{
-        activeColor: 'black',
+      initialVolume={0.3}
+      magnifySliderOnHover={true}
+      uris={nextSong}
+      callback={state => {
+        if(!state.isPlaying) setPlay(false)
+      }}
+      play={play}
+      styles={{
+        activeColor: '#000000',
         bgColor: '#333',
         color: '#fff',
         loaderColor: '#fff',

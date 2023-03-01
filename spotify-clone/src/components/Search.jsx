@@ -16,14 +16,12 @@ export default function Search(){
   const [searchResults, setSearchResults] = useState([])
   const { songQueue, setSongQueue } = useContext(DataContext)
 
-
   useEffect(() => {
 
     if(search.length === 0){
       setSearchResults([])
-    }
-
-    spotifyApi.searchTracks(search)
+    }else if(search.length > 0){
+      spotifyApi.searchTracks(search)
     .then(function(data) {
 
       const convertMS = (ms) => {
@@ -49,13 +47,19 @@ export default function Search(){
     }, function(err) {
       console.error("error with query:",err)
     })
+    }
   },[search])
 
-  // console.log("search results", searchResults)
-  console.log("current song queue:", songQueue)
+  console.log("CURRENT SONG QUEUE:", songQueue)
 
   const handleChange = (e) => {
     setSearch(e.target.value)
+  }
+
+
+  const handleClick = (track) => {
+    setSongQueue([])
+    setSongQueue(track)
   }
 
   return(
@@ -65,7 +69,6 @@ export default function Search(){
         <i className="fa fa-search fa-lg fa-fw" aria-hidden="true"></i>
       </div>
 
-
       <div className="search-results-container">
         <div className="top-result-container">
           {
@@ -74,7 +77,7 @@ export default function Search(){
             <h2>Browse all</h2> : 
             <div className="top-result">
               <h3>Top Result</h3>
-              <div className="top-result-wrapper" style={{backgroundColor:"rgb(30, 30, 30)"}} onClick={()=>setSongQueue(songQueue.concat(searchResults[0].track))}> 
+              <div className="top-result-wrapper" style={{backgroundColor:"rgb(30, 30, 30)", borderRadius:"8px"}} onClick={() => (setSongQueue([]),setSongQueue(searchResults[0].track))}> 
                 <img src={searchResults[0].albumCover} alt={searchResults[0].name} height="100vh"/>
                 <h2 className="result-title">{searchResults[0].name}</h2>
                 <h6 className="result-artist">{searchResults[0].artist}</h6>
@@ -88,15 +91,15 @@ export default function Search(){
             (searchResults.length === 0) ? null : 
             <div className="top-four">
               <h3>Songs</h3>
-              <ul style={{backgroundColor:"rgb(30, 30, 30)"}} className="top-four-list">
+              <ul style={{backgroundColor:"rgb(30, 30, 30)", borderRadius:"8px"}} className="top-four-list">
                 {
-                  searchResults.slice(1,5).map((tracks) => (
-                    <li key={tracks.id} onClick={() => setSongQueue(songQueue.concat(tracks.track))}>
+                  searchResults.slice(1,6).map((tracks) => (
+                    <li key={tracks.id} onClick={() => (setSongQueue([]),setSongQueue(tracks.track))}>
                       <img src={tracks.albumCover} alt={tracks.name} height="50vh"/>
                       <div className="track-metadata">
-                        <p>{tracks.name}</p>
-                        <p>{tracks.duration}</p>
-                        <p>{tracks.artist}</p>
+                        <p>{tracks.name} - {tracks.artist}</p>
+                        <p style={{marginLeft: "auto"}}>{tracks.duration}</p>
+                        <p></p>
                       </div>
                     </li>
                   ))
@@ -106,13 +109,7 @@ export default function Search(){
           }
         </div>
         <div className="top-result-artists">
-          {/* {
-            (searchResults.length === 0) ? console.log("no artists yet...") : 
-              uniqueArtists.artists.map((artist) => (
-                <img src={artist.images[0].url} alt={artist.name} height="100vh"/>
-              )
-              )
-          } */}
+
         </div>
       </div>
     </div>

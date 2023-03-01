@@ -5,11 +5,11 @@ import { menuItems } from "./MenuItems";
 import Home from "./Home";
 import Search from "./Search";
 import Player from "./Player";
+import Library from "./Library";
 
 
 export default function Nav() {
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
-  // console.log("is logged in?", isLoggedIn)
   const [ selection, setSelection] = useState()
   const { accessToken, setAccessToken } = useContext(DataContext)
 
@@ -32,21 +32,14 @@ export default function Nav() {
   let token = urlParams.get('access_token');
   if(token){
     setAccessToken(token)
-    console.log("WE FOUND THE TOKEN AND SET IT TO ACCESS TOKEN!", accessToken)
-    // setIsLoggedIn(true)
-    // console.log("USER IS LOGGED IN", isLoggedIn)
+    // console.log("WE FOUND THE TOKEN AND SET IT TO ACCESS TOKEN!", accessToken)
   }
 
-  
-
-  // setAccessToken(token)
-  // useEffect(() => {
-  //   if(token){
-  //     setAccessToken(token)
-  //   }
-  // }, [])
-
-  // console.log("received token: " + accessToken);
+  useEffect(()=>{
+    if(accessToken.length > 200){
+      setIsLoggedIn(true)
+    }  
+  }, [accessToken])
 
   return(
     <div className="container">
@@ -67,28 +60,25 @@ export default function Nav() {
         </div>
 
         <div className="login">
-          <button className="login-button"><a href={url}>Login with Spotify</a></button>
+          {
+            !isLoggedIn ? <button className="login-button"><a href={url}>Spotify Login</a></button> : <h3 style={{position: "absolute", bottom: "100px"}}>You rockstar!</h3>
+          }
+          
         </div>
 
       </div>
       <div className="display-container">
         <main>
           {
-            selection === "Home"? <Home/> : selection === "Search"? <Search/> : selection === undefined ? <Home/> : null
+            selection === "Home" ? <Home/> : selection === "Search" ? <Search/> : selection === "Library" ? <Library /> : selection === undefined ? <Home/> : null
           }
         </main>
       </div>
       <div className="player-container">
-        {/* {
-          if(isLoggedIn){
-            set
-          }
-        } */}
-        <Player/>
+        {
+          isLoggedIn ? <Player/> : <p style={{marginBottom: "30px"}}>Login with a Spotify premium account for playback permissions</p>
+        }
       </div>
     </div>
   )
 }
-
-
-// `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`

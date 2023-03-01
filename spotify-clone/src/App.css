@@ -126,8 +126,9 @@ input {
  }
 .top-result-container,
 .top-four-songs {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   padding: 10px;
+
 }
 
 .top-result-container:hover,
@@ -135,12 +136,14 @@ li:hover {
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 250ms ease-in-out;
+
 }
 
 .top-result-wrapper,
 .top-four-list {
   margin-top: 25px;
-  padding: 5px;
+  padding: 12px;
+  height: 260px;
 }
 
 .result-title, 
@@ -157,11 +160,18 @@ li {
   margin-bottom: 2px;
   width: 100%;
 }
+.top-result-wrapper:hover,
+li:hover {
+  border: 0.5px solid gray
+}
 
 .track-metadata {
   margin-left: 10px;
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .login-button {
