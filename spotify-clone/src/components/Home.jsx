@@ -81,7 +81,7 @@ export default function Home(){
               { 
                 newReleases?.map((album) => (
                   <div className="album-container" key={album.id} onClick={() => (setSongQueue(album.uri))}>
-                    <img className="album-container-image" src={album.images[0].url} alt={album.name} height="150vh" style={{marginBottom: "5px"}}/>
+                    <img className="album-container-image" src={album.images[0].url} alt={album.name} height="170vh" style={{marginBottom: "5px"}}/>
                     <h4 style={{marginBottom: "5px"}}>{album.name}</h4>
                     <h5>{album.artists[0].name}</h5>
                   </div>
@@ -107,7 +107,7 @@ export default function Home(){
               {
                 featuredPlaylists?.map((playlist) => (
                   <div className="featured-playlist-container" key={playlist.id} onClick={() => (setSongQueue(playlist.uri))}>
-                    <img src={playlist.images[0].url} alt={playlist.name} className="featured-playlist-image" height="150vh" style={{marginBottom: "5px"}}/>
+                    <img src={playlist.images[0].url} alt={playlist.name} className="featured-playlist-image" height="170vh" style={{marginBottom: "5px"}}/>
                   </div>
                 ))
               }

@@ -17,7 +17,6 @@ export default function Search(){
   const { setSongQueue } = useContext(DataContext)
   const [ artists, setArtists ] = useState([])
   const [ artistDisplay, setArtistDisplay ] = useState(null)
-  // let topFive = []
 
   useEffect(() => {
 
@@ -33,7 +32,7 @@ export default function Search(){
         return `${minutes}:${seconds}`
       }
 
-      console.log(`Searching for ${search}`, data.body.tracks.items)
+      // console.log(`Searching for ${search}`, data.body.tracks.items)
       setSearchResults(data.body.tracks.items.map((track)=>(
         {
           id: track.id,
@@ -61,10 +60,7 @@ export default function Search(){
     }
   },[search])
 
-  // const findTopFiveArtists = (artists) => {
-  //   topFive = []
-    
-  // }
+    // console.log('ARTISTS:', artists)
 
   useEffect(() => {
     setArtistDisplay([])
@@ -78,7 +74,10 @@ export default function Search(){
           'Authorization': 'Bearer ' + accessToken
         }
       }
-      artists.slice(0,5).forEach((artist) => (
+      let key = "artistID"
+      let topFiveUnique = [...new Map(artists.map(item => [item[key], item])).values()]
+      // console.log("UNIQUE ARTISTS:", topFiveUnique)
+      topFiveUnique.slice(0,5).forEach((artist) => (
         // console.log("for each:", artist)
         fetch("https://api.spotify.com/v1/artists/" + artist.artistID, searchParams))
           .then(response => response.json())
@@ -91,11 +90,6 @@ export default function Search(){
 
   const handleChange = (e) => {
     setSearch(e.target.value)
-  }
-
-  if(search.length === 0){
-    console.log("THERE IS NO SEARCH QUERY")
-    // setArtistDisplay([])
   }
 
   return(
