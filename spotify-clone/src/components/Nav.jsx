@@ -15,7 +15,8 @@ export default function Nav() {
 
   //required parameters for Spotify auth
   let client_id = "77089cefd6f24876925e0a39069e25ca";
-  let redirect_uri = 'http://localhost:3000/callback';
+  // let redirect_uri = 'http://localhost:3000/callback';
+  let redirect_uri = "https://jade-nasturtium-e030aa.netlify.app/"
   let state = "random-string-for-state";
   let scope = 'user-read-private user-read-email streaming user-library-read user-library-modify user-read-playback-state user-modify-playback-state';
   let url = 'https://accounts.spotify.com/authorize';
