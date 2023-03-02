@@ -8,27 +8,24 @@ import Player from "./Player";
 import Library from "./Library";
 
 
-
 export default function Nav() {
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
   const [ selection, setSelection] = useState()
   const { accessToken, setAccessToken } = useContext(DataContext)
 
+  //required parameters for Spotify auth
   let client_id = process.env.REACT_APP_CLIENT_ID;
   let redirect_uri = 'http://localhost:3000/callback';
-
   let state = "random-string-for-state";
-
-  // localStorage.setItem(stateKey, state);
   let scope = 'user-read-private user-read-email streaming user-library-read user-library-modify user-read-playback-state user-modify-playback-state';
-
-  var url = 'https://accounts.spotify.com/authorize';
+  let url = 'https://accounts.spotify.com/authorize';
   url += '?response_type=token';
   url += '&client_id=' + encodeURIComponent(client_id);
   url += '&scope=' + encodeURIComponent(scope);
   url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
   url += '&state=' + encodeURIComponent(state);
 
+  //extract token from URL after login
   let urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
   let token = urlParams.get('access_token');
   if(token){
@@ -43,10 +40,13 @@ export default function Nav() {
 
   return(
     <div className="container">
+
       <div className="nav-container">
+
         <div className="top-section">
           <img src="Images/Spotify_Logo_RGB_White.png" alt="spotify-logo" className="logo"/><br/>
         </div>
+        
         <div className="nav-items">
             {
               menuItems.map((item, index) => {
@@ -63,10 +63,9 @@ export default function Nav() {
           {
             !isLoggedIn ? <button className="login-button"><a href={url}>Spotify Login</a></button> : <h4 style={{position: "absolute", bottom: "100px"}}>You rockstar 😎</h4>
           }
-          
         </div>
-
       </div>
+
       <div className="display-container">
         <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
           <main>
@@ -76,11 +75,13 @@ export default function Nav() {
           </main>
         </LoginContext.Provider>
       </div>
+
       <div className="player-container">
         {
           isLoggedIn ? <Player/> : <p style={{marginBottom: "30px"}}>Login with a Spotify premium account for playback permissions</p>
         }
       </div>
+
     </div>
   )
 }

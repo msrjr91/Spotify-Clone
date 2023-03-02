@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Search from './components/Search';
 import { DataContext } from "./DataContext"
 
+//from Spotify developers dashboard
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 const auth_token = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`, 'utf-8').toString('base64')

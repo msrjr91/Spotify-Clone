@@ -14,9 +14,10 @@ export default function Search(){
   spotifyApi.setAccessToken(accessToken)
   const [search, setSearch] = useState('')
   const [searchResults, setSearchResults] = useState([])
-  const { songQueue, setSongQueue } = useContext(DataContext)
+  const { setSongQueue } = useContext(DataContext)
   const [ artists, setArtists ] = useState([])
   const [ artistDisplay, setArtistDisplay ] = useState(null)
+  // let topFive = []
 
   useEffect(() => {
 
@@ -60,6 +61,10 @@ export default function Search(){
     }
   },[search])
 
+  // const findTopFiveArtists = (artists) => {
+  //   topFive = []
+    
+  // }
 
   useEffect(() => {
     setArtistDisplay([])
@@ -108,7 +113,7 @@ export default function Search(){
             <h2>Browse all</h2> : 
             <div className="top-result">
               <h3>Top Result</h3>
-              <div className="top-result-wrapper" style={{backgroundColor:"rgb(30, 30, 30)", borderRadius:"8px"}} onClick={() => (setSongQueue([]),setSongQueue(searchResults[0].track))}> 
+              <div className="top-result-wrapper" style={{backgroundColor:"rgb(30, 30, 30)", borderRadius:"8px"}} onClick={() => (setSongQueue(searchResults[0].track))}> 
                 <img src={searchResults[0].albumCover} alt={searchResults[0].name} height="100vh"/>
                 <h2 className="result-title">{searchResults[0].name}</h2>
                 <h6 className="result-artist">{searchResults[0].artist}</h6>
@@ -125,7 +130,7 @@ export default function Search(){
               <ul style={{backgroundColor:"rgb(30, 30, 30)", borderRadius:"8px"}} className="top-four-list">
                 {
                   searchResults.slice(1,6).map((tracks) => (
-                    <li key={tracks.id} onClick={() => (setSongQueue([]),setSongQueue(tracks.track))}>
+                    <li key={tracks.id} onClick={() => (setSongQueue(tracks.track))}>
                       <img src={tracks.albumCover} alt={tracks.name} height="50vh"/>
                       <div className="track-metadata" style={{fontSize: "1vw"}}>
                         <p>{tracks.name} - {tracks.artist}</p>
@@ -155,3 +160,6 @@ export default function Search(){
 
   )
 }
+
+
+// setSongQueue([]),setSongQueue([]),

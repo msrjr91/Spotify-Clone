@@ -3,14 +3,15 @@ import { useContext } from 'react'
 import { DataContext, LoginContext } from '../DataContext'
 
 
-export default function Home(props){
+export default function Home(){
 
-  const {accessToken, songQueue, setSongQueue} = useContext(DataContext)
+  const {accessToken, setSongQueue} = useContext(DataContext)
   const { isLoggedIn } = useContext(LoginContext)
   const [ newReleases, setNewReleases ] = useState(null)
   const [ featuredPlaylists, setFeaturedPlaylists ] = useState(null)
   const [ audiobooks, setAudiobooks ] = useState(null)
 
+  //fetch new album releases from Spotify
   useEffect(() => {
     async function getNew(){
       let searchParams = {
@@ -28,6 +29,7 @@ export default function Home(props){
     getNew()
   },[isLoggedIn, accessToken])
 
+  //fetch featured playlists from Spotify
   useEffect(() => {
     async function getFeatured(){
       let searchParams = {
@@ -45,8 +47,7 @@ export default function Home(props){
     getFeatured()
   }, [isLoggedIn, accessToken])
 
-  // console.log("featuredPlaylists", featuredPlaylists)
-
+  //fetch audiobooks from Spotify
   useEffect(() => {
     async function getAudiobooks(){
       let searchParams = {
@@ -64,8 +65,6 @@ export default function Home(props){
     getAudiobooks()
   },[isLoggedIn, accessToken])
 
-  // console.log("AUDIOBOOK:", audiobooks)
-
   return(
     <section>
       <div>
@@ -73,7 +72,6 @@ export default function Home(props){
         <br />
         <br />
         <br />
-        
         {
           isLoggedIn && newReleases ? 
           <div className="categories-container">
@@ -82,7 +80,7 @@ export default function Home(props){
             <div className="new-release-albums">
               { 
                 newReleases?.map((album) => (
-                  <div className="album-container" key={album.id} onClick={() => (setSongQueue([]), setSongQueue(album.uri))}>
+                  <div className="album-container" key={album.id} onClick={() => (setSongQueue(album.uri))}>
                     <img className="album-container-image" src={album.images[0].url} alt={album.name} height="150vh" style={{marginBottom: "5px"}}/>
                     <h4 style={{marginBottom: "5px"}}>{album.name}</h4>
                     <h5>{album.artists[0].name}</h5>
@@ -91,7 +89,7 @@ export default function Home(props){
               }
             </div>
 
-            <h3 style={{display: "inline-block", marginBottom: "5px", marginTop: "15px"}}>Audiobooks</h3>
+            {/* <h3 style={{display: "inline-block", marginBottom: "5px", marginTop: "15px"}}>Audiobooks</h3>
             <div className="audiobook" style={{marginBottom: "15px", marginTop: "15px"}}>
               {
                 audiobooks?.map((book) => (
@@ -102,22 +100,25 @@ export default function Home(props){
                   </div>
                 ))
               }
-            </div>
+            </div> */}
 
-            <h3 style={{display: "inline-block", marginBottom: "5px", marginTop: "15px"}}>Featured Playlists</h3>
+            <h3 style={{display: "inline-block", marginBottom: "5px", marginTop: "30px"}}>Featured Playlists</h3>
             <div className="featured-playlist-covers">
               {
                 featuredPlaylists?.map((playlist) => (
-                  <div className="featured-playlist-container" key={playlist.id} onClick={() => (setSongQueue([]), setSongQueue(playlist.uri))}>
+                  <div className="featured-playlist-container" key={playlist.id} onClick={() => (setSongQueue(playlist.uri))}>
                     <img src={playlist.images[0].url} alt={playlist.name} className="featured-playlist-image" height="150vh" style={{marginBottom: "5px"}}/>
                   </div>
                 ))
               }
             </div>
 
-          </div> : <h2></h2>
+          </div> : null
         }
       </div>
     </section>
   )
 }
+
+
+// setSongQueue([]), setSongQueue([]), 

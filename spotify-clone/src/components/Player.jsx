@@ -5,9 +5,6 @@ import { DataContext } from '../DataContext';
 export default function Player(){
 
   const {accessToken, songQueue} = useContext(DataContext)
-  // console.log("INHERITED SONG QUEUE:", songQueue)
-  // console.log("PLAYER FUNC INHERITED TOKEN:", accessToken)
-
   const [ play, setPlay ] = useState(false)
 
   useEffect(() => {
@@ -20,6 +17,7 @@ export default function Player(){
 
   let nextSong = songQueue
 
+  //Spotify SDK webplayback functionality
   return(    
     <SpotifyPlayer
       token={accessToken}
@@ -33,11 +31,12 @@ export default function Player(){
       }}
       play={play}
       styles={{
-        activeColor: '#000000',
+        activeColor: '#1DB954',
         bgColor: '#333',
         color: '#fff',
         loaderColor: '#fff',
-        sliderColor: '#1cb954',
+        sliderColor: '#000',
+        sliderHandleColor: '#1DB954',
         trackArtistColor: '#ccc',
         trackNameColor: '#fff',
       }}
