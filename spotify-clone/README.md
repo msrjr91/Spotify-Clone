@@ -27,17 +27,17 @@ As of this most updated release, here are the list of known limitations/bugs tha
 - Library on the navigation is empty. Currently, a feature to add songs to the library is being worked on.
 
 ## Technologies Used
--React.js
--JavaScript/Node.js
--CSS
--HTML
+- React.js
+- JavaScript/Node.js
+- CSS
+- HTML
 #### Node packages installed
--buffer
--dotenv
--axios
--react-router-dom
--spotify-web-player
--react-spotify-web-playback
+- buffer
+- dotenv
+- axios
+- react-router-dom
+- spotify-web-player
+- react-spotify-web-playback
 
 ## Credits Due
 
