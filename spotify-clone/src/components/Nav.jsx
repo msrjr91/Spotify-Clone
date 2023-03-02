@@ -14,7 +14,7 @@ export default function Nav() {
   const { accessToken, setAccessToken } = useContext(DataContext)
 
   //required parameters for Spotify auth
-  let client_id = process.env.REACT_APP_CLIENT_ID;
+  let client_id = "77089cefd6f24876925e0a39069e25ca";
   let redirect_uri = 'http://localhost:3000/callback';
   let state = "random-string-for-state";
   let scope = 'user-read-private user-read-email streaming user-library-read user-library-modify user-read-playback-state user-modify-playback-state';
@@ -46,7 +46,7 @@ export default function Nav() {
         <div className="top-section">
           <img src="Images/Spotify_Logo_RGB_White.png" alt="spotify-logo" className="logo"/><br/>
         </div>
-        
+
         <div className="nav-items">
             {
               menuItems.map((item, index) => {
