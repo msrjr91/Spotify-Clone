@@ -8,15 +8,15 @@ Without logging in, users will be able to freely search through Spotify's catelo
 
 ## Free
 ##### Home page without login
-![Home page without login](/Users/michaelross/Desktop/GA/SEIR123/Projects/Project2/Spotify-Clone/spotify-clone/public/Images/Home-free.png)
+![Home page without login](/public/Images/Home-free.png)
 ##### Search page without login
-![Search page without login](/Users/michaelross/Desktop/GA/SEIR123/Projects/Project2/Spotify-Clone/spotify-clone/public/Images/Search-free.png)
+![Search page without login](/public/Images/Search-free.png)
 
 ## Premium
 ##### Home page with login
-![Home page for premium account](/Users/michaelross/Desktop/GA/SEIR123/Projects/Project2/Spotify-Clone/spotify-clone/public/Images/Home-premium.png)
+![Home page for premium account](/public/Images/Home-premium.png)
 ##### Search page with login
-![Search page for premium account](/Users/michaelross/Desktop/GA/SEIR123/Projects/Project2/Spotify-Clone/spotify-clone/public/Images/Search-premium.png)
+![Search page for premium account](/public/Images/Search-premium.png)
 
 ## Limitations
 
