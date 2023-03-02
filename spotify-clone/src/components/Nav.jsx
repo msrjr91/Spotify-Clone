@@ -61,7 +61,7 @@ export default function Nav() {
 
         <div className="login">
           {
-            !isLoggedIn ? <button className="login-button"><a href={url}>Spotify Login</a></button> : <h3 style={{position: "absolute", bottom: "100px"}}>You rockstar!</h3>
+            !isLoggedIn ? <button className="login-button"><a href={url}>Spotify Login</a></button> : <h4 style={{position: "absolute", bottom: "100px"}}>You rockstar 😎</h4>
           }
           
         </div>

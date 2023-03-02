@@ -8,8 +8,8 @@ export default function Home(props){
   const {accessToken, songQueue, setSongQueue} = useContext(DataContext)
   const { isLoggedIn } = useContext(LoginContext)
   const [ newReleases, setNewReleases ] = useState(null)
-
-  console.log("LOGIN STATUS:", isLoggedIn)
+  const [ featuredPlaylists, setFeaturedPlaylists ] = useState(null)
+  const [ audiobooks, setAudiobooks ] = useState(null)
 
   useEffect(() => {
     async function getNew(){
@@ -28,10 +28,43 @@ export default function Home(props){
     getNew()
   },[isLoggedIn, accessToken])
 
-  if(isLoggedIn){
-    console.log("NEW ALBUMS OUT:", newReleases)
-  }
+  useEffect(() => {
+    async function getFeatured(){
+      let searchParams = {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + accessToken
+        }
+      }
+      fetch("https://api.spotify.com/v1/browse/featured-playlists?country=US&locale=sv_US&timestamp=2014-10-23T09%3A00%3A00&limit=10&offset=5", searchParams)
+        .then(result => result.json())
+        .then(data => setFeaturedPlaylists(data.playlists.items))
+    }
+    getFeatured()
+  }, [isLoggedIn, accessToken])
 
+  // console.log("featuredPlaylists", featuredPlaylists)
+
+  useEffect(() => {
+    async function getAudiobooks(){
+      let searchParams = {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + accessToken
+        }
+      }
+      fetch("https://api.spotify.com/v1/audiobooks?ids=18yVqkdbdRvS24c0Ilj2ci%2C1HGw3J3NxZO1TP1BTtVhpZ%2C7iHfbu1YPACw6oZPAFJtqe&market=ES", searchParams)
+      .then(result => result.json())
+      .then(data => setAudiobooks(data.audiobooks))
+    }
+    getAudiobooks()
+  },[isLoggedIn, accessToken])
+
+  // console.log("AUDIOBOOK:", audiobooks)
 
   return(
     <section>
@@ -40,24 +73,49 @@ export default function Home(props){
         <br />
         <br />
         <br />
-        <h1>Jump right in</h1><br />
+        
         {
           isLoggedIn && newReleases ? 
           <div className="categories-container">
-          
-          <h3 style={{display: "inline-block", marginBottom: "5px"}}>New Releases</h3>
-          <div className="new-release-albums">
-            { 
-              newReleases?.map((album) => (
-                <div className="album-container" key={album.id} onClick={() => (setSongQueue([]), setSongQueue(album.uri))}>
-                  <img className="album-container-image" src={album.images[0].url} alt={album.name} height="120vh" style={{marginBottom: "5px"}}/>
-                  <h4 style={{marginBottom: "5px"}}>{album.name}</h4>
-                  <h5>{album.artists[0].name}</h5>
-                </div>
-              )) 
-            }
-          </div>
-        </div> : <h2></h2>
+            <h1>Jump right in</h1><br />
+            <h3 style={{display: "inline-block", marginBottom: "5px"}}>New Releases</h3>
+            <div className="new-release-albums">
+              { 
+                newReleases?.map((album) => (
+                  <div className="album-container" key={album.id} onClick={() => (setSongQueue([]), setSongQueue(album.uri))}>
+                    <img className="album-container-image" src={album.images[0].url} alt={album.name} height="150vh" style={{marginBottom: "5px"}}/>
+                    <h4 style={{marginBottom: "5px"}}>{album.name}</h4>
+                    <h5>{album.artists[0].name}</h5>
+                  </div>
+                )) 
+              }
+            </div>
+
+            <h3 style={{display: "inline-block", marginBottom: "5px", marginTop: "15px"}}>Audiobooks</h3>
+            <div className="audiobook" style={{marginBottom: "15px", marginTop: "15px"}}>
+              {
+                audiobooks?.map((book) => (
+                  <div className="audiobook-container">
+                    <img src={book.images[0].url} alt={book.name} className="album-image" height="200vh" style={{marginBottom: "5px", backgroundColor: "black"}}/>
+                    <h4>{book.name}</h4>
+                    <h5>{book.authors[0].name}</h5>
+                  </div>
+                ))
+              }
+            </div>
+
+            <h3 style={{display: "inline-block", marginBottom: "5px", marginTop: "15px"}}>Featured Playlists</h3>
+            <div className="featured-playlist-covers">
+              {
+                featuredPlaylists?.map((playlist) => (
+                  <div className="featured-playlist-container" key={playlist.id} onClick={() => (setSongQueue([]), setSongQueue(playlist.uri))}>
+                    <img src={playlist.images[0].url} alt={playlist.name} className="featured-playlist-image" height="150vh" style={{marginBottom: "5px"}}/>
+                  </div>
+                ))
+              }
+            </div>
+
+          </div> : <h2></h2>
         }
       </div>
     </section>

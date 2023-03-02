@@ -15,6 +15,8 @@ export default function Search(){
   const [search, setSearch] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const { songQueue, setSongQueue } = useContext(DataContext)
+  const [ artists, setArtists ] = useState([])
+  const [ artistDisplay, setArtistDisplay ] = useState(null)
 
   useEffect(() => {
 
@@ -44,22 +46,51 @@ export default function Search(){
           duration: convertMS(track.duration_ms)
         }
       )))
+      setArtists(data.body.tracks.items.map((track)=>(
+        {
+          artist: track.artists[0].name,
+          artistID: track.artists[0].id,
+          artistURI: track.artists[0].uri
+        }
+      )))
+
     }, function(err) {
       console.error("error with query:",err)
     })
     }
   },[search])
 
-  console.log("CURRENT SONG QUEUE:", songQueue)
+
+  useEffect(() => {
+    setArtistDisplay([])
+    async function getArtists(){
+
+      let searchParams = {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + accessToken
+        }
+      }
+      artists.slice(0,5).forEach((artist) => (
+        // console.log("for each:", artist)
+        fetch("https://api.spotify.com/v1/artists/" + artist.artistID, searchParams))
+          .then(response => response.json())
+          .then(data => setArtistDisplay(artistDisplay=>[...artistDisplay,data]))
+        
+      )
+    }
+    getArtists()
+  },[artists, searchResults])
 
   const handleChange = (e) => {
     setSearch(e.target.value)
   }
 
-
-  const handleClick = (track) => {
-    setSongQueue([])
-    setSongQueue(track)
+  if(search.length === 0){
+    console.log("THERE IS NO SEARCH QUERY")
+    // setArtistDisplay([])
   }
 
   return(
@@ -96,7 +127,7 @@ export default function Search(){
                   searchResults.slice(1,6).map((tracks) => (
                     <li key={tracks.id} onClick={() => (setSongQueue([]),setSongQueue(tracks.track))}>
                       <img src={tracks.albumCover} alt={tracks.name} height="50vh"/>
-                      <div className="track-metadata">
+                      <div className="track-metadata" style={{fontSize: "1vw"}}>
                         <p>{tracks.name} - {tracks.artist}</p>
                         <p style={{marginLeft: "auto"}}>{tracks.duration}</p>
                         <p></p>
@@ -109,7 +140,15 @@ export default function Search(){
           }
         </div>
         <div className="top-result-artists">
-
+          {
+            search.length > 0 ? 
+            artistDisplay.map((artist) => (
+              <div className="artist-image-container" style={{textAlign: "center"}}>
+              <h5 style={{marginBottom:"15px"}}>{artist.name}</h5>
+              <img src={artist.images[0].url} alt={artist.name} className={artist.id} style={{borderRadius: "50%"}} height="120vh"/>
+            </div>
+            )) : null
+          }
         </div>
       </div>
     </div>
