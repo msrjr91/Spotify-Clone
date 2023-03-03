@@ -8,15 +8,19 @@ Without logging in, users will be able to freely search through Spotify's catelo
 
 ## Free
 ##### Home page without login
-![Home page without login](public/Images/Home-free.png)
+![Home page without login](public/Images/home-free.png)
 ##### Search page without login
-![Search page without login](public/Images/Search-free.png)
+![Search page without login](public/Images/search-free.png)
+##### Library page without login
+![Library page without login](public/Images/library-free.png)
 
 ## Premium
 ##### Home page with login
-![Home page for premium account](public/Images/Home-premium.png)
+![Home page for premium account](public/Images/home-premium.png)
 ##### Search page with login
-![Search page for premium account](public/Images/Search-premium.png)
+![Search page for premium account](public/Images/search-premium.png)
+##### Library page with login
+![Library page for premium account](public/Images/library-premium.png)
 
 ## Limitations
 
@@ -24,7 +28,7 @@ As of this most updated release, here are the list of known limitations/bugs tha
 
 - premium account users must manually pause a song before selecting a new one. This only applies to individual tracks in the search page. Playlists and albums on the home page will be able to play all the way through without any intervention. 
 - Artists images show hover effects that are meant to be clicked to be redirected to the artist's page, but this has not been implemented yet.
-- Library on the navigation is empty. Currently, a feature to add songs to the library is being worked on.
+- After adding songs to the library, users can play the entire playlist or shuffle. Shuffle function works fine, but after shuffling, the play button continues to play the original order of the playlist.
 
 ## Technologies Used
 - React.js
@@ -41,7 +45,7 @@ As of this most updated release, here are the list of known limitations/bugs tha
 
 ## Credits Due
 
-This project was the very first front-end application I created using a front-end framework (React). I couldn't have done this without the use of online tutorials that instructs on React itself as well as using the Spotify API, which can be very tricky. A special thank you goes General Assembly for the primary instruction and to Web Dev Simplified on Youtube for specific lessons that helped me navigate through the challenges of this project.
+This project was the very first front-end application I created using a front-end framework (React). I couldn't have done this without the use of online tutorials that instructs on React itself as well as using the Spotify API, which can be very tricky. A special thank you goes General Assembly for the primary instruction and to Web Dev Simplified on Youtube for specific lessons that helped me navigate through the challenges of this project, such as understanding the requirements of a spotify api fetch request.
 
 ## Website
 
