@@ -8,19 +8,19 @@ Without logging in, users will be able to freely search through Spotify's catelo
 
 ## Free Use
 ##### Home page without login
-![Home page without login](public/Images/home-free.png)
+![Home page without login](public/Images/homepagefree.png)
 ##### Search page without login
-![Search page without login](public/Images/search-free.png)
+![Search page without login](public/Images/searchfree.png)
 ##### Library page without login
-![Library page without login](public/Images/library-free.png)
+![Library page without login](public/Images/libraryfree.png)
 
 ## Premium Use
 ##### Home page with login
-![Home page for premium account](public/Images/home-premium.png)
+![Home page for premium account](public/Images/homepagepremium.png)
 ##### Search page with login
-![Search page for premium account](public/Images/search-premium.png)
+![Search page for premium account](public/Images/searchpremium.png)
 ##### Library page with login
-![Library page for premium account](public/Images/library-premium.png)
+![Library page for premium account](public/Images/librarypremium.png)
 
 ## Limitations
 
