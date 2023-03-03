@@ -6,11 +6,12 @@ import { Buffer } from 'buffer';
 import Nav from './components/Nav';
 import Home from './components/Home';
 import Search from './components/Search';
-import { DataContext } from "./DataContext"
+import Library from './components/Library';
+import { DataContext } from "./DataContext";
 
 //from Spotify developers dashboard
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
-const CLIENT_SECRET = REACT_APP_CLIENT_SECRET
+const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 const auth_token = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`, 'utf-8').toString('base64')
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/library" element={<Library />} />
         </Routes>
         </Nav> 
       </div>

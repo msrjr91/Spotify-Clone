@@ -1,6 +1,6 @@
 import SpotifyPlayer from 'react-spotify-web-playback';
 import { useContext, useState, useEffect } from 'react';
-import { DataContext } from '../DataContext';
+import { DataContext, LoginContext } from '../DataContext';
 
 export default function Player(){
 
@@ -15,6 +15,10 @@ export default function Player(){
     setPlay(true)
   }, [songQueue])
 
+  useEffect(()=> {
+
+  }, [])
+
   let nextSong = songQueue
 
   //Spotify SDK webplayback functionality
@@ -22,7 +26,7 @@ export default function Player(){
     <SpotifyPlayer
       token={accessToken}
       autoPlay={false}
-      showSaveIcon
+      // showSaveIcon
       initialVolume={0.3}
       magnifySliderOnHover={true}
       uris={nextSong}
@@ -42,5 +46,4 @@ export default function Player(){
       }}
     />
   )
-
 }

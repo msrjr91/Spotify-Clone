@@ -11,12 +11,13 @@ import Library from "./Library";
 export default function Nav() {
   const [ isLoggedIn, setIsLoggedIn ] = useState(false)
   const [ selection, setSelection] = useState()
+  const [ likedSongs, setLikedSongs ] = useState([])
   const { accessToken, setAccessToken } = useContext(DataContext)
 
   //required parameters for Spotify auth
   let client_id = process.env.REACT_APP_CLIENT_ID;
-  // let redirect_uri = 'http://localhost:3000/callback';
-  let redirect_uri = "https://jade-nasturtium-e030aa.netlify.app/"
+  let redirect_uri = 'http://localhost:3000/callback';
+  // let redirect_uri = "https://jade-nasturtium-e030aa.netlify.app/"
   let state = "random-string-for-state";
   let scope = 'user-read-private user-read-email streaming user-library-read user-library-modify user-read-playback-state user-modify-playback-state';
   let url = 'https://accounts.spotify.com/authorize';
@@ -66,23 +67,24 @@ export default function Nav() {
           }
         </div>
       </div>
-
+      <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn, likedSongs, setLikedSongs }}>
       <div className="display-container">
-        <LoginContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        
           <main>
             {
               selection === "Home" ? <Home /> : selection === "Search" ? <Search/> : selection === "Library" ? <Library /> : selection === undefined ? <Home/> : null
             }
           </main>
-        </LoginContext.Provider>
+        
       </div>
 
       <div className="player-container">
+      
         {
           isLoggedIn ? <Player/> : <p style={{marginBottom: "30px"}}>Login with a Spotify premium account for playback permissions</p>
         }
       </div>
-
+      </LoginContext.Provider>
     </div>
   )
 }

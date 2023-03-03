@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useContext } from 'react'
-import { DataContext } from '../DataContext'
+import { DataContext, LoginContext } from '../DataContext'
 import SpotifyWebApi from 'spotify-web-api-node'
 
 const spotifyApi = new SpotifyWebApi({
@@ -15,6 +15,7 @@ export default function Search(){
   const [search, setSearch] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const { setSongQueue } = useContext(DataContext)
+  const { likedSongs, setLikedSongs } = useContext(LoginContext)
   const [ artists, setArtists ] = useState([])
   const [ artistDisplay, setArtistDisplay ] = useState(null)
 
@@ -32,7 +33,7 @@ export default function Search(){
         return `${minutes}:${seconds}`
       }
 
-      // console.log(`Searching for ${search}`, data.body.tracks.items)
+      console.log(`Searching for ${search}`, data.body.tracks.items)
       setSearchResults(data.body.tracks.items.map((track)=>(
         {
           id: track.id,
@@ -82,7 +83,6 @@ export default function Search(){
         fetch("https://api.spotify.com/v1/artists/" + artist.artistID, searchParams))
           .then(response => response.json())
           .then(data => setArtistDisplay(artistDisplay=>[...artistDisplay,data]))
-        
       )
     }
     getArtists()
@@ -91,6 +91,8 @@ export default function Search(){
   const handleChange = (e) => {
     setSearch(e.target.value)
   }
+
+  console.log("CURRENT LIKED SONGS:", likedSongs)
 
   return(
     <div className="search-container">
@@ -111,10 +113,10 @@ export default function Search(){
                 <img src={searchResults[0].albumCover} alt={searchResults[0].name} height="100vh"/>
                 <h2 className="result-title">{searchResults[0].name}</h2>
                 <h6 className="result-artist">{searchResults[0].artist}</h6>
+                <img src={(likedSongs.some(song => song.id === searchResults[0].id)) ? "Images/checkmark.png" : "Images/add-song.png" } alt="add-song-logo" className='add-song' height="30vh" style={{position: "relative", marginLeft: "90%"}} onClick={(likedSongs.some(song => song.id === searchResults[0].id)) ? console.log("CAN ADD") : () => setLikedSongs(likedSongs => [...likedSongs, searchResults[0]])}/>
               </div>
             </div>
           }
-
         </div>
         <div className="top-four-songs">
           {
@@ -124,13 +126,15 @@ export default function Search(){
               <ul style={{backgroundColor:"rgb(30, 30, 30)", borderRadius:"8px"}} className="top-four-list">
                 {
                   searchResults.slice(1,6).map((tracks) => (
-                    <li key={tracks.id} onClick={() => (setSongQueue(tracks.track))}>
+                    <li key={tracks.id} >
                       <img src={tracks.albumCover} alt={tracks.name} height="50vh"/>
-                      <div className="track-metadata" style={{fontSize: "1vw"}}>
+                      
+                      <div className="track-metadata" style={{fontSize: "1vw"}} onClick={() => (setSongQueue(tracks.track))}>
                         <p>{tracks.name} - {tracks.artist}</p>
                         <p style={{marginLeft: "auto"}}>{tracks.duration}</p>
-                        <p></p>
+                        
                       </div>
+                      <img src={(likedSongs.some(song => song.id === tracks.id)) ? "Images/checkmark.png" : "Images/add-song.png"} alt="add-song-logo" className='add-song' height="30vh" style={{marginTop: "auto", marginBottom: "auto", marginLeft: "10px"}} onClick={(likedSongs.some(song => song.id === tracks.id)) ? console.log("CAN ADD"): () => setLikedSongs(likedSongs => [...likedSongs, tracks])}/>
                     </li>
                   ))
                 }
@@ -154,6 +158,3 @@ export default function Search(){
 
   )
 }
-
-
-// setSongQueue([]),setSongQueue([]),

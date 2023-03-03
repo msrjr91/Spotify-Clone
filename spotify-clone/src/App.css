@@ -134,7 +134,7 @@ input {
 }
 
 .top-result-container:hover,
-li:hover {
+.track-metadata:hover {
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 250ms ease-in-out;
@@ -163,9 +163,10 @@ li {
   width: 100%;
 }
 .top-result-wrapper:hover,
-li:hover {
+.track-metadata:hover {
   border: 0.5px solid gray
 }
+
 
 .track-metadata {
   margin-left: 10px;
@@ -174,6 +175,7 @@ li:hover {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  padding: 5px;
 }
 
 .login-button {
@@ -229,4 +231,47 @@ li:hover {
   border-radius: 8px;
   opacity: 0.7;
   transition: opacity 250ms ease-in-out;
+}
+
+.liked-songs {
+  overflow: auto;
+  height: 90vh;
+}
+
+.liked-song-container {
+  padding: 10px;
+}
+
+.liked-song-container:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  border: 1px solid gray;
+  border-radius: 12px;
+}
+
+.play-liked-songs {
+  display: "inline-block";
+  border-radius: 50%;
+  padding: 10px;
+  border: none;
+  position: absolute;
+  top: 25px;
+  right: 30px;
+}
+
+.play-liked-songs:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  border: 1px solid gray;
+  transition: opacity 250ms ease-in-;
+}
+
+.add-song {
+  opacity: 0.2;
+}
+
+.add-song:hover {
+  opacity: 1;
+  transition: opacity 250ms ease;
+  cursor: pointer;
 }
