@@ -6,7 +6,7 @@ This project utilizes the Spotify API to create a web-based Spotify "clone." Use
 
 Without logging in, users will be able to freely search through Spotify's catelogue. Unfortunately, without logging in, users will experience a significantly downgraded version of the application. 
 
-## Free
+## Free Use
 ##### Home page without login
 ![Home page without login](public/Images/home-free.png)
 ##### Search page without login
@@ -14,7 +14,7 @@ Without logging in, users will be able to freely search through Spotify's catelo
 ##### Library page without login
 ![Library page without login](public/Images/library-free.png)
 
-## Premium
+## Premium Use
 ##### Home page with login
 ![Home page for premium account](public/Images/home-premium.png)
 ##### Search page with login
