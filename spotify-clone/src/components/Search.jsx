@@ -4,8 +4,8 @@ import { DataContext, LoginContext } from '../DataContext'
 import SpotifyWebApi from 'spotify-web-api-node'
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.REACT_APP_CLIENT_ID,
-  clientSecret: process.env.REACT_APP_CLIENT_SECRET
+  clientId: "77089cefd6f24876925e0a39069e25ca",
+  clientSecret: "b7a432f52dc9488996c87643f5959712"
 })
 
 export default function Search(){

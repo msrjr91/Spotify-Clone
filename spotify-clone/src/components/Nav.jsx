@@ -15,7 +15,7 @@ export default function Nav() {
   const { accessToken, setAccessToken } = useContext(DataContext)
 
   //required parameters for Spotify auth
-  let client_id = process.env.REACT_APP_CLIENT_ID;
+  let client_id = "77089cefd6f24876925e0a39069e25ca";
   // let redirect_uri = 'http://localhost:3000/callback';
   let redirect_uri = "https://jade-nasturtium-e030aa.netlify.app/"
   let state = "random-string-for-state";
