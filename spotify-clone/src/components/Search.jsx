@@ -112,7 +112,7 @@ export default function Search(){
             <h2>Browse all</h2> : 
             <div className="top-result">
               <h3>Top Result</h3>
-              <div className="top-result-wrapper" style={{backgroundColor:"#0c170b", borderRadius:"8px"}} onClick={() => (setSongQueue(searchResults[0].track))}> 
+              <div className="top-result-wrapper" style={{backgroundColor:"#11210f", borderRadius:"8px"}} onClick={() => (setSongQueue(searchResults[0].track))}> 
                 <img src={searchResults[0].albumCover} alt={searchResults[0].name} height="100vh"/>
                 <h2 className="result-title">{searchResults[0].name}</h2>
                 <h6 className="result-artist">{searchResults[0].artist}</h6>
@@ -126,7 +126,7 @@ export default function Search(){
             (searchResults.length === 0) ? null : 
             <div className="top-four">
               <h3>Songs</h3>
-              <ul style={{backgroundColor:"#0c170b", borderRadius:"8px"}} className="top-four-list">
+              <ul style={{backgroundColor:"#11210f", borderRadius:"8px"}} className="top-four-list">
                 {
                   searchResults.slice(1,6).map((tracks) => (
                     <li key={tracks.id}>
