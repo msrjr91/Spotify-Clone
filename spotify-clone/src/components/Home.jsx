@@ -40,7 +40,7 @@ export default function Home(){
           'Authorization': 'Bearer ' + accessToken
         }
       }
-      fetch("https://api.spotify.com/v1/browse/featured-playlists?country=US&locale=sv_US&timestamp=2014-10-23T09%3A00%3A00&limit=10&offset=5", searchParams)
+      fetch("https://api.spotify.com/v1/browse/featured-playlists?country=US&locale=sv_US&timestamp=2014-10-23T09%3A00%3A00&limit=20&offset=5", searchParams)
         .then(result => result.json())
         .then(data => setFeaturedPlaylists(data.playlists.items))
     }
