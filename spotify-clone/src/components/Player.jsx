@@ -36,10 +36,10 @@ export default function Player(){
       play={play}
       styles={{
         activeColor: '#1DB954',
-        bgColor: '#333',
+        bgColor: '#0c170b',
         color: '#fff',
         loaderColor: '#fff',
-        sliderColor: '#000',
+        sliderColor: '#fff',
         sliderHandleColor: '#1DB954',
         trackArtistColor: '#ccc',
         trackNameColor: '#fff',

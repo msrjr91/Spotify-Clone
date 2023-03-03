@@ -9,7 +9,7 @@ export default function Home(){
   const { isLoggedIn } = useContext(LoginContext)
   const [ newReleases, setNewReleases ] = useState(null)
   const [ featuredPlaylists, setFeaturedPlaylists ] = useState(null)
-  const [ audiobooks, setAudiobooks ] = useState(null)
+  const [ throwbacksPlaylist, setThrowbacksPlaylist ] = useState(null)
 
   //fetch new album releases from Spotify
   useEffect(() => {
@@ -40,16 +40,16 @@ export default function Home(){
           'Authorization': 'Bearer ' + accessToken
         }
       }
-      fetch("https://api.spotify.com/v1/browse/featured-playlists?country=US&locale=sv_US&timestamp=2023-03-03T09%3A00%3A00&limit=20&offset=5", searchParams)
+      fetch("https://api.spotify.com/v1/browse/featured-playlists?country=US&locale=sv_US&timestamp=2023-03-03T09%3A00%3A00&limit=20&offset=0", searchParams)
         .then(result => result.json())
         .then(data => setFeaturedPlaylists(data.playlists.items))
     }
     getFeatured()
   }, [isLoggedIn, accessToken])
 
-  //fetch audiobooks from Spotify
+  //fetch throwbacks from Spotify
   useEffect(() => {
-    async function getAudiobooks(){
+    async function getThrowbacks(){
       let searchParams = {
         method: 'GET',
         headers: {
@@ -58,11 +58,11 @@ export default function Home(){
           'Authorization': 'Bearer ' + accessToken
         }
       }
-      fetch("https://api.spotify.com/v1/audiobooks?ids=18yVqkdbdRvS24c0Ilj2ci%2C1HGw3J3NxZO1TP1BTtVhpZ%2C7iHfbu1YPACw6oZPAFJtqe&market=ES", searchParams)
+      fetch("https://api.spotify.com/v1/browse/featured-playlists?country=US&locale=sv_US&timestamp=2015-09-24T09%3A00%3A00&limit=20&offset=1", searchParams)
       .then(result => result.json())
-      .then(data => setAudiobooks(data.audiobooks))
+      .then(data => setThrowbacksPlaylist(data.playlists.items))
     }
-    getAudiobooks()
+    getThrowbacks()
   },[isLoggedIn, accessToken])
 
   return(
@@ -89,25 +89,24 @@ export default function Home(){
               }
             </div>
 
-            {/* <h3 style={{display: "inline-block", marginBottom: "5px", marginTop: "15px"}}>Audiobooks</h3>
-            <div className="audiobook" style={{marginBottom: "15px", marginTop: "15px"}}>
-              {
-                audiobooks?.map((book) => (
-                  <div className="audiobook-container">
-                    <img src={book.images[0].url} alt={book.name} className="album-image" height="200vh" style={{marginBottom: "5px", backgroundColor: "black"}}/>
-                    <h4>{book.name}</h4>
-                    <h5>{book.authors[0].name}</h5>
-                  </div>
-                ))
-              }
-            </div> */}
-
             <h3 style={{display: "inline-block", marginBottom: "5px", marginTop: "30px"}}>Featured Playlists</h3>
             <div className="featured-playlist-covers">
               {
                 featuredPlaylists?.map((playlist) => (
                   <div className="featured-playlist-container" key={playlist.id} onClick={() => (setSongQueue(playlist.uri))}>
                     <img src={playlist.images[0].url} alt={playlist.name} className="featured-playlist-image" height="170vh" style={{marginBottom: "5px"}}/>
+                  </div>
+                ))
+              }
+            </div>
+
+
+            <h3 style={{display: "inline-block", marginBottom: "5px", marginTop: "30px"}}>Throwback Thursdays</h3>
+            <div className="throwbacks-playlist-covers">
+              {
+                throwbacksPlaylist?.map((playlist) => (
+                  <div className="throwbacks-playlist-container" key={playlist.id} onClick={() => (setSongQueue(playlist.uri))}>
+                    <img src={playlist.images[0].url} alt={playlist.name} className="throwbacks-playlist-image" height="170vh" style={{marginBottom: "5px"}}/>
                   </div>
                 ))
               }

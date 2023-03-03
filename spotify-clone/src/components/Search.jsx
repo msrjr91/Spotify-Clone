@@ -30,6 +30,9 @@ export default function Search(){
       const convertMS = (ms) => {
         const minutes = Math.floor(ms / 60000)
         const seconds = Math.floor(ms / 1000) % 60
+        if(seconds < 10){
+          return `${minutes}:0${seconds}`
+        }
         return `${minutes}:${seconds}`
       }
 
@@ -109,7 +112,7 @@ export default function Search(){
             <h2>Browse all</h2> : 
             <div className="top-result">
               <h3>Top Result</h3>
-              <div className="top-result-wrapper" style={{backgroundColor:"rgb(30, 30, 30)", borderRadius:"8px"}} onClick={() => (setSongQueue(searchResults[0].track))}> 
+              <div className="top-result-wrapper" style={{backgroundColor:"#0c170b", borderRadius:"8px"}} onClick={() => (setSongQueue(searchResults[0].track))}> 
                 <img src={searchResults[0].albumCover} alt={searchResults[0].name} height="100vh"/>
                 <h2 className="result-title">{searchResults[0].name}</h2>
                 <h6 className="result-artist">{searchResults[0].artist}</h6>
@@ -123,10 +126,10 @@ export default function Search(){
             (searchResults.length === 0) ? null : 
             <div className="top-four">
               <h3>Songs</h3>
-              <ul style={{backgroundColor:"rgb(30, 30, 30)", borderRadius:"8px"}} className="top-four-list">
+              <ul style={{backgroundColor:"#0c170b", borderRadius:"8px"}} className="top-four-list">
                 {
                   searchResults.slice(1,6).map((tracks) => (
-                    <li key={tracks.id} >
+                    <li key={tracks.id}>
                       <img src={tracks.albumCover} alt={tracks.name} height="50vh"/>
                       
                       <div className="track-metadata" style={{fontSize: "1vw"}} onClick={() => (setSongQueue(tracks.track))}>

@@ -13,7 +13,7 @@
   overflow: hidden;
   margin: 0 auto;
   display: flex;
-  background-color: rgb(2, 11, 7);
+  background-color: rgb(4, 10, 8);
 }
 
 .nav-container {
@@ -58,7 +58,7 @@
   height: 100vh;
   padding: 20px;
   overflow: auto;
-  background-color: #090f0b;
+  background-image: linear-gradient(#050b07,#152219);
 }
 
 main {
@@ -75,11 +75,10 @@ main {
   position: fixed;  
   bottom: 0;
   width: 100%;
-  padding: 10spx;
   max-height: 15vh;
-  /* background-color: rgb(255, 255, 255); */
   align-items: center;
   text-align: center;
+  border: 0.1px solid rgb(16, 17, 16);
 }
 
 .search-container {
@@ -134,7 +133,7 @@ input {
 }
 
 .top-result-container:hover,
-.track-metadata:hover {
+li:hover {
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 250ms ease-in-out;
@@ -164,7 +163,8 @@ li {
 }
 .top-result-wrapper:hover,
 .track-metadata:hover {
-  border: 0.5px solid gray
+  border: 0.5px solid gray;
+  cursor: pointer;
 }
 
 
@@ -188,6 +188,8 @@ li {
   background-color: #1DB954;
   color: white;
 }
+
+.throwbacks-playlist-covers,
 .top-result-artists,
 .audiobook,
 .featured-playlist-covers,
@@ -209,6 +211,8 @@ li {
   transition: opacity 0.2s ease-;
 }
 
+.throwbacks-playlist-covers::-webkit-scrollbar,
+.featured-playlist-covers::-webkit-scrollbar,
 .new-release-albums::-webkit-scrollbar{
   display: none;
 }
@@ -218,13 +222,13 @@ li {
   height: 80vh;
 }
 
-.audiobook-container,
+.throwbacks-playlist-container,
 .featured-playlist-container,
 .album-container {
   margin-right: 15px;
 }
 
-.audiobook-container:hover,
+.throwbacks-playlist-container:hover,
 .featured-playlist-container:hover,
 .album-container:hover {
   cursor: pointer;
@@ -235,7 +239,7 @@ li {
 
 .liked-songs {
   overflow: auto;
-  height: 90vh;
+  height: 85vh;
 }
 
 .liked-song-container {
@@ -249,16 +253,34 @@ li {
   border-radius: 12px;
 }
 
+.buttons-container {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
 .play-liked-songs {
   display: "inline-block";
   border-radius: 50%;
   padding: 10px;
   border: none;
-  position: absolute;
+  /* position: absolute;
   top: 25px;
-  right: 30px;
+  right: 30px; */
 }
 
+.shuffle-liked-songs {
+  padding: 10px;
+  display: "inline-block";
+  border: none;
+  border-radius: 50%;
+  margin-right: 10px;
+  /* position: absolute;
+  top: 25px;
+  right: 120px; */
+}
+
+.shuffle-liked-songs:hover,
 .play-liked-songs:hover {
   cursor: pointer;
   opacity: 0.7;
@@ -275,3 +297,16 @@ li {
   transition: opacity 250ms ease;
   cursor: pointer;
 }
+
+/* .new-release-albums,
+.featured-playlist-covers,
+.throwbacks-playlist-covers {
+  animation: carousel 9s linear infinite;
+}
+
+@keyframes carousel {
+  100%
+  {
+    transform: translateX(20vw);
+  }
+} */
