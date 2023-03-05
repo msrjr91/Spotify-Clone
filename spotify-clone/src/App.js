@@ -10,8 +10,10 @@ import Library from './components/Library';
 import { DataContext } from "./DataContext";
 
 //from Spotify developers dashboard
-const CLIENT_ID = "77089cefd6f24876925e0a39069e25ca"
-const CLIENT_SECRET = "b7a432f52dc9488996c87643f5959712"
+// const CLIENT_ID = "77089cefd6f24876925e0a39069e25ca"
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+// const CLIENT_SECRET = "b7a432f52dc9488996c87643f5959712"
+const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 const auth_token = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`, 'utf-8').toString('base64')
 
 function App() {
