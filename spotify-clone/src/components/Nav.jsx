@@ -18,8 +18,8 @@ export default function Nav() {
   // let client_id = "77089cefd6f24876925e0a39069e25ca";
   let client_id = process.env.REACT_APP_CLIENT_ID;
   // let redirect_uri = 'http://localhost:3000/callback';
-  // let redirect_uri = "https://jade-nasturtium-e030aa.netlify.app/"
-  let redirect_uri = "myspotifyclone7990.surge.sh"
+  let redirect_uri = "https://jade-nasturtium-e030aa.netlify.app/"
+  // let redirect_uri = "myspotifyclone7990.surge.sh"
   let state = "random-string-for-state";
   let scope = 'user-read-private user-read-email streaming user-library-read user-library-modify user-read-playback-state user-modify-playback-state';
   let url = 'https://accounts.spotify.com/authorize';
